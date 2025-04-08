@@ -80,7 +80,7 @@ def fetch_binance_data(symbol, days, timeframe, limit=100000):
         # Convert to DataFrame
         data = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
         all_data.append(data)
-
+        print("Total records fetched : " + str(len(all_data)) + "for " + str(start_time))
         # Update `start_time` to the timestamp of the last candle to fetch the next batch
         start_time = ohlcv[-1][0] + 1  # Move to the next timestamp
 
@@ -94,8 +94,8 @@ def fetch_binance_data(symbol, days, timeframe, limit=100000):
     combined_data.set_index('timestamp', inplace=True)
     return combined_data
 
-symbol = "DOGEUSDT"
-days = 250
+symbol = "BTCUSDT"
+days = 400
 timeframe = "5m"
 file_name = symbol + "_" + timeframe + "_" + str(days) + "d"
 
